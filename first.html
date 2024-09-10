@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Julian <3</title>
     <style>
         body
         {
             background-image: url(https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg);
             background-size: cover;
+            width: auto;
+            height: auto;
         }
         #bear
         {
@@ -23,24 +25,32 @@
         #button-one
         {
             position: relative; top: 80px;
-            align-content: center;
             text-align: center;
+            height: 200px;
         }
         #press-yes, #press-no
         {   
-            text-align: center;
+            cursor: pointer;
+            padding: 10px;
+            position: absolute;
+            right: 550px;
             border-radius: 10px;
             background-color: rgba(235, 235, 44, 0.884);
             width: 200px;
             height: 40px;
         }
-        @media (max-width: 300px)
+        #press-no
+        {
+            bottom: 1px;
+        }
+        @media (max-width: 320px)
         {
             body 
             {
-                width: 600px;
+                width: 320px;
+                height: auto;
             }
-  #button-one
+            #button-one
             {
             background-color: red;
             }
@@ -72,7 +82,32 @@
         <button id="press-yes">Yes</button>
         <br>
         <br>
-        <button id="press-no">No, Im sorry</button>
-    </div>
+    <button id="press-no">No, I'm sorry</button>
+        </div>
+    <script>
+        const movingButton = document.getElementById('press-no');
+
+        function moveButton() {
+            // Get the viewport's width and height
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;   
+            const maxX = viewportWidth - movingButton.offsetWidth; // Ensure the button stays on-screen
+            const maxY = viewportHeight - movingButton.offsetHeight; // Ensure the button stays on-screen
+
+            // Generate random x and y coordinates within the viewport
+            const randomX = Math.random() * (viewportWidth - movingButton.offsetWidth); // Adjust for button width
+            const randomY = Math.random() * (viewportHeight - movingButton.offsetHeight); // Adjust for button height
+
+
+            // Set the button's new position
+            movingButton.style.left = `${randomX}px`;
+            movingButton.style.top = `${randomY}px`;
+        }
+
+        // Move the button when it's clicked
+        movingButton.addEventListener('click', moveButton);
+
+        // Initial position for the button
+    </script>
 </body>
 </html>
