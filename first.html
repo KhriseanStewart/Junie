@@ -43,19 +43,16 @@
         {
             bottom: 1px;
         }
-        @media (max-width: 600px)
+               @media (max-width: 414px)
         {
             body 
             {
-                width: 320px;
-                height: auto;
-            }
-            #button-one
-            {
+                width: 420px;
+                height: 896px;
             }
             #press-yes, #press-no
             {
-                left: 100px;
+                left: 150px;
                 width: 100px;
                 height: 40px;
             }
@@ -70,21 +67,23 @@
                 justify-content: center;
             }
         }
-        @media (max-width: 320px)
+        @media (min-width: 420px, max-width: 600px)
         {
             body 
             {
-                width: 320px;
-                height: auto;
+                
+                width: 600px;
+                height: fit-content;
             }
             #button-one
             {
-            background-color: red;
+                text-align: center;
             }
             #press-yes, #press-no
             {
-                left: 100px;
-                width: 50px;
+                
+                left: 250px;
+                width: 100px;
                 height: 40px;
             }
             #bearimg
@@ -97,6 +96,64 @@
                 display: flex;
                 justify-content: center;
             }
+        }
+        @media (min-width: 650px, max-width: 700px)
+        {
+            body
+            {
+                width: 700px;
+                height: fit-content;
+            }
+            #button-one
+            {
+                width: 700px;
+                background-color: red;
+            }
+            #press-yes, #press-no
+            {
+                left: 290px;
+            }
+        }
+        @media (min-width: 1074)
+        {
+            body
+        {
+            background-image: url(https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg);
+            background-size: cover;
+            width: auto;
+            height: auto;
+        }
+        #bear
+        {
+            position: relative; top: 80px;
+            display: flex;
+            justify-content: center;
+        }
+        #bearimg
+        {
+            border-radius: 8px;
+        }
+        #button-one
+        {
+            position: relative; top: 80px;
+            text-align: center;
+            height: 200px;
+        }
+        #press-yes, #press-no
+        {   
+            cursor: pointer;
+            padding: 10px;
+            position: absolute;
+            right: 550px;
+            border-radius: 10px;
+            background-color: rgba(235, 235, 44, 0.884);
+            width: 200px;
+            height: 40px;
+        }
+        #press-no
+        {
+            bottom: 1px;
+        }   
         }
     
     </style>
