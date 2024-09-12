@@ -7,6 +7,7 @@
     <style>
         body
         {
+            background-color: black;
             background-image: url(https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg);
             background-size: cover;
             width: auto;
@@ -179,7 +180,6 @@
             bottom: 1px;
         }   
         }
-
         .popup
         {
             display: none;
@@ -216,18 +216,75 @@
             cursor: pointer;
         }
 
+        .heart
+        {   
+            bottom: 40px;
+            display: flex;
+            justify-content: center;
+            height: 70px;
+            width: 70px;
+            background: #f20044;
+            position: relative;
+            transform: rotate(-45deg);
+            box-shadow: -10px 10px 90px #f20044;
+            animation: heart 0.9s linear infinite;
+        }
+        .love-message {
+            margin-top: 10px; /* Add some space below the heart */
+            color: white; /* Set text color for better visibility */
+            font-size: 24px; /* Adjust font size as necessary */
+            text-shadow: 
+                -1px -1px 0 #f20044,  
+                 1px -1px 0 #f20044,
+                -1px  1px 0 #f20044,
+                 1px  1px 0 #f20044;
+        }
+        #visible
+        {
+            border: red solid;
+        }
+        @keyframes heart
+        {
+            0% {
+                transform: rotate(-45deg) scale(1.07);
+            }
+            80% {
+                transform: rotate(-45deg) scale(1.0);
+            }
+            100% {
+                transform: rotate(-45deg) scale(0.8);
+            }
+        }
+        .heart:before
+        {
+            content: '';
+            position:absolute;
+            height:  70px;
+            width: 70px;
+            background: #f20044;
+            top: -50%;
+            border-radius: 50px;
+            box-shadow: -10px  -10px 90px #f20044;
+        }
+        .heart:after
+        {
+            content: '';
+            position:absolute;
+            height:  70px;
+            width: 70px;
+            background: #f20044;
+            right: -50%;
+            border-radius: 50px;
+            box-shadow: 10px  10px 90px #f20044;
+        }
         .fireworks-background-hidden
         {
+            top: 300px;
+            display: none;
             display: none;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 70vh;
-            width: 70vh;
-            background: url('Milk And Mocha Bear Couple GIF - Milk And Mocha Bear Couple Line - Discover & Share GIFs.gif'); /*need to add my own fireworks*/
-            background-size: cover;
-            color: white;
-            text-align: center;
+            position: relative;
+            align-items: center; /* Align children horizontally center */
         }
         .show
         {
@@ -236,82 +293,85 @@
     </style>
 </head>
 <body>
+<div class="visible">
     <div id="bear">
         <img id="bearimg" src="Milk And Mocha Bear Couple GIF - Milk And Mocha Bear Couple Line - Discover & Share GIFs.gif" alt="Bear GIF">
     </div>
     <div id="button-one">
         <h1 id="text"> Can you be my <br> Girlfriend??</h1>
         <button id="press-yes">Yes</button>
-        
-        <div id="popup" class="popup">
-            <div class="popup-content">
+        <button id="press-no">No, I'm sorry</button>
+    </div>
+</div>
+
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
                 <span class="close-button">&times;</span>
                 <h2>For Julian Junie Foster</h2>
                 <p>I hope your the one reading thsi cause if it aint work out between us i aint redoing/ adjusting website for anyone apart from you. So firstly, i aint tryna .Now you probably realize the close button isn't working and thats because.... idk lol just press off screen.</p>
-            </div>
         </div>
+    </div>
 
-        <div id="fireworks-background" class="fireworks-background-hidden">
-            <h1>Congrats</h1>
-            <p>Youve triggered the fireworks</p>
-        </div>
+    <div id="fireworks-background" class="fireworks-background-hidden">
+        <div class="heart"></div>
+        <h1 class="love-message">I love you</h1>
+    </div>
 
         <br>
-        <br>
-    <button id="press-no">No, I'm sorry</button>
-        </div>
     <script>
+// For adding pop up message
+document.getElementById('press-yes').onclick = function() {
+    document.getElementById('popup').style.display = 'block';  
+}
 
-        //for adding pop up message
-        document.getElementById('press-yes').onclick =
-        function() 
-        {
-        document.getElementById('popup').style.display = 'block';  
-        }
-        document.querySelector('.close-button').oneclick = function()
-        {
-            document.getElementById('popup').style.display = 'none';
+document.querySelector('.close-button').onclick = function() {
+    document.getElementById('popup').style.display = 'none';
 
-            //show fireworks
-            document.getElementById('fireworks-background').classList.add('show');
-        }
+    // Hide everything except the fireworks background
+    document.querySelector('.visible').style.display = 'none'; // Hide all visible content
+    
+    // Change the body background and show fireworks
+    document.body.style.backgroundImage = "url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg')";
+    document.getElementById('fireworks-background').classList.add('show'); // Show fireworks
+}
 
-        window.onclick = function(event)
-        {
-            const popup =
-            document.getElementById('popup');
-            if (event.target.id ==='popup')
-        {
-            popup.style.display = 'none';
+window.onclick = function(event) {
+    const popup = document.getElementById('popup');
+    if (event.target === popup) {
+        popup.style.display = 'none';
 
-            //show fireworks
-            document.getElementById('fireworks-background').classList.add ('show');
-        }
-        }
+        // Hide everything except the fireworks background
+        document.querySelector('.visible').style.display = 'none'; // Hide all visible content
+        
+        // Change the body background and show fireworks
+        document.body.style.backgroundImage = "url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9zci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg')";
+        document.getElementById('fireworks-background').classList.add('show'); // Show fireworks
+    }
+}
 
-        const movingButton = document.getElementById('press-no');
+const movingButton = document.getElementById('press-no');
 
-        function moveButton() {
-            // Get the viewport's width and height
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;   
-            const maxX = viewportWidth - movingButton.offsetWidth; // Ensure the button stays on-screen
-            const maxY = viewportHeight - movingButton.offsetHeight; // Ensure the button stays on-screen
+function moveButton() {
+    // Get the viewport's width and height
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;   
+    const maxX = viewportWidth - movingButton.offsetWidth; // Ensure the button stays on-screen
+    const maxY = viewportHeight - movingButton.offsetHeight; // Ensure the button stays on-screen
 
-            // Generate random x and y coordinates within the viewport
-            const randomX = Math.random() * (viewportWidth - movingButton.offsetWidth); // Adjust for button width
-            const randomY = Math.random() * (viewportHeight - movingButton.offsetHeight); // Adjust for button height
+    // Generate random x and y coordinates within the viewport
+    const randomX = Math.random() * (maxX); // Adjust for button width
+    const randomY = Math.random() * (maxY); // Adjust for button height
 
+    // Set the button's new position
+    movingButton.style.left = `${randomX}px`;
+    movingButton.style.top = `${randomY}px`;
+}
 
-            // Set the button's new position
-            movingButton.style.left = `${randomX}px`;
-            movingButton.style.top = `${randomY}px`;
-        }
+// Move the button when it's clicked
+movingButton.addEventListener('click', moveButton);
 
-        // Move the button when it's clicked
-        movingButton.addEventListener('click', moveButton);
-
-        // Initial position for the button
+// Initial position for the button
     </script>
 </body>
 </html>
