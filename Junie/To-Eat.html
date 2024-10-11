@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            color: palevioletred;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .food-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid black;
+            cursor: pointer; /* Makes the image look clickable */
+            transition: transform 0.2s; /* Animation for hover effect */
+        }
+        .food-img:hover {
+            transform: scale(1.1); /* Slightly enlarge image on hover */
+        }
+        #section-one {
+            display: flex;
+            justify-content: space-between;
+            width: 1000px;
+            margin: auto; /* Centers the section */
+        }
+        #nextButton {
+            width: 300px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: grey;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed; /* Disabled cursor */
+        }
+        #nextButton.enabled {
+            background-color: palevioletred;
+            cursor: pointer; /* Enable cursor */
+        }
+    </style>
+</head>
+<body>
+    <div id="text">
+        <h2>What do you want to eat?</h2>
+    </div>
+
+    <br id="big-space">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section id="section-one">
+        <div id="Pizza" class="food-option">
+            <img class="food-img" src="Pizza.jpg" alt="Pizza">
+            <h4>Pizza</h4>
+        </div>
+        <div id="KFC1" class="food-option">
+            <img class="food-img" src="KFC.png" alt="KFC">
+            <h4>KFC</h4>
+        </div>
+        <div id="KFC2" class="food-option">
+            <img class="food-img" src="ResturantFood.jpg" alt="Dmitriz">
+            <h4>Dmitriz</h4>
+        </div>
+        <div id="Resturant" class="food-option">
+            <img class="food-img" src="images.png" alt="Mothers">
+            <h4>Mother's</h4> 
+            <p>Don't you dare pick this</p>
+        </div>
+    </section>
+
+    <button onclick="location.href='Newer.html'" id="nextButton" class="disabled" disabled>Next</button>
+
+    <script>
+        // Get all food option elements
+        const foodOptions = document.querySelectorAll('.food-option');
+
+        // Get the button
+        const nextButton = document.getElementById("nextButton");
+
+        // Add click event to each food option
+        foodOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove 'selected' class from all options
+                foodOptions.forEach(opt => opt.classList.remove('selected'));
+                // Add 'selected' class to the clicked option
+                this.classList.add('selected');
+
+                // Enable next button
+                nextButton.disabled = false;
+                nextButton.classList.add('enabled'); // Add enabled class
+                nextButton.classList.remove('disabled'); // Optional if you want to remove disabled class
+            });
+        });
+    </script>
+</body>
+</html>

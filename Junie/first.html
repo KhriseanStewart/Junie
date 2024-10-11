@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating Hearts</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: palevioletred;
+            text-align: center;
+            overflow: hidden; /* Prevents scrollbars from showing */
+            position: relative;
+            height: 100vh; /* Sets the height of the body to full viewport height */
+            margin: 0; /* Removes default margin */
+        }
+        #GIF {
+            position: relative;
+            top: 100px;
+            
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: crimson;
+            transform: rotate(45deg);
+            opacity: 0;
+
+            /* Creating the heart shape using pseudo-elements */
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: crimson;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -15px;
+            left: 0;
+        }
+        .heart::after {
+            left: 15px;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="GIF">
+        <img id="cat" src="cat-cute.gif" alt="" width="200" height="200">
+        <h3>See you there <3</h3>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+
+            // Random position for the heart to start from
+            heart.style.left = `${window.innerWidth / 2}px`;
+            heart.style.top = `${window.innerHeight / 1.5}px`;
+
+            // Randomize the movement direction
+            const randomX = Math.random() * 1000 - 500; // Move within a range of -100 to 100
+            const randomY = Math.random() * 500 + 250; // Move upwards with some extra height
+
+            // Animation to float the heart
+            const animationDuration = Math.random() * 4 + 6; // Random duration between 3s to 5s
+            heart.animate([
+                { transform: `translate(3, 1000)`, opacity: 6 },
+                { transform: `translate(${randomX}px, -${randomY}px)`, opacity: 0 }
+            ], {
+                duration: animationDuration * 1000,
+                easing: 'ease-in-out',
+                fill: 'forwards'
+            });
+
+            // Remove the heart after animation completes
+            setTimeout(() => {
+                heart.remove();
+            }, animationDuration * 10000);
+        }
+
+        // Create a heart every 500ms
+        setInterval(createHeart, 700);
+    </script>
+</body>
+</html>

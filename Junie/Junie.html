@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confession</title>
+    <style>
+        body
+        {
+            background-color: black;
+            background-image: url(https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg);
+            background-size: cover;
+            width: auto;
+            height: auto;
+        }
+        #bear
+        {
+            position: relative; top: 80px;
+            display: flex;
+            justify-content: center;
+        }
+        #bearimg
+        {
+            border-radius: 8px;
+        }
+        #button-one
+        {
+            position: relative; top: 80px;
+            text-align: center;
+            height: 200px;
+        }
+        #press-yes, #press-no
+        {   
+            cursor: pointer;
+            padding: 10px;
+            position: absolute;
+            right: 550px;
+            border-radius: 10px;
+            background-color: rgba(235, 235, 44, 0.884);
+            width: 200px;
+            height: 40px;
+        }
+        #press-no
+        {
+            bottom: 1px;
+        }
+        @media (max-width: 390px)
+        {
+            body 
+            {
+                width: 390px;
+                height: 844px;
+            }
+            #press-yes, #press-no
+            {
+                left: 130px;
+                width: 120px;
+                height: 40px;
+            }
+            #bearimg
+            {
+                
+                width: 300px;
+            }
+            #bear
+            {
+                display: flex;
+                justify-content: center;
+            }
+        }
+        @media (min-width:391px) and (max-width: 414px)
+        {
+            body 
+            {
+                width: 420px;
+                height: 896px;
+            }
+            #press-yes, #press-no
+            {
+                left: 150px;
+                width: 100px;
+                height: 40px;
+            }
+            #bearimg
+            {
+                
+                width: 300px;
+            }
+            #bear
+            {
+                display: flex;
+                justify-content: center;
+            }
+        }
+        @media (min-width: 420px) and ( max-width: 600px)
+        {
+            body 
+            {
+                
+                width: 600px;
+                height: fit-content;
+            }
+            #button-one
+            {
+                text-align: center;
+            }
+            #press-yes, #press-no
+            {
+                
+                left: 250px;
+                width: 100px;
+                height: 40px;
+            }
+            #bearimg
+            {
+                
+                width: 300px;
+            }
+            #bear
+            {
+                display: flex;
+                justify-content: center;
+            }
+        }
+        @media (min-width: 650px) and ( max-width: 700px)
+        {
+            body
+            {
+                width: 700px;
+                height: fit-content;
+            }
+            #button-one
+            {
+                width: 700px;
+                background-color: red;
+            }
+            #press-yes, #press-no
+            {
+                left: 290px;
+            }
+        }
+        @media (min-width: 1074)
+        {
+            body
+        {
+            background-image: url(https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg);
+            background-size: cover;
+            width: auto;
+            height: auto;
+        }
+        #bear
+        {
+            position: relative; top: 80px;
+            display: flex;
+            justify-content: center;
+        }
+        #bearimg
+        {
+            border-radius: 8px;
+        }
+        #button-one
+        {
+            position: relative; top: 80px;
+            text-align: center;
+            height: 200px;
+        }
+        #press-yes, #press-no
+        {   
+            cursor: pointer;
+            padding: 10px;
+            position: absolute;
+            right: 550px;
+            border-radius: 10px;
+            background-color: rgba(235, 235, 44, 0.884);
+            width: 200px;
+            height: 40px;
+        }
+        #press-no
+        {
+            bottom: 1px;
+        }   
+        }
+        .popup
+        {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgb(0,0,0,0.4);
+        }
+        .popup-content
+        {
+            background-color: #fefeff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close-button 
+        {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover, .close-button:focus
+        {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .heart
+        {   
+            bottom: 40px;
+            display: flex;
+            justify-content: center;
+            height: 70px;
+            width: 70px;
+            background: #f20044;
+            position: relative;
+            transform: rotate(-45deg);
+            box-shadow: -10px 10px 90px #f20044;
+            animation: heart 0.9s linear infinite;
+        }
+        .love-message {
+            margin-top: 10px; /* Add some space below the heart */
+            color: white; /* Set text color for better visibility */
+            font-size: 24px; /* Adjust font size as necessary */
+            text-shadow: 
+                -1px -1px 0 #f20044,  
+                 1px -1px 0 #f20044,
+                -1px  1px 0 #f20044,
+                 1px  1px 0 #f20044;
+        }
+        #visible
+        {
+            border: red solid;
+        }
+        @keyframes heart
+        {
+            0% {
+                transform: rotate(-45deg) scale(1.07);
+            }
+            80% {
+                transform: rotate(-45deg) scale(1.0);
+            }
+            100% {
+                transform: rotate(-45deg) scale(0.8);
+            }
+        }
+        .heart:before
+        {
+            content: '';
+            position:absolute;
+            height:  70px;
+            width: 70px;
+            background: #f20044;
+            top: -50%;
+            border-radius: 50px;
+            box-shadow: -10px  -10px 90px #f20044;
+        }
+        .heart:after
+        {
+            content: '';
+            position:absolute;
+            height:  70px;
+            width: 70px;
+            background: #f20044;
+            right: -50%;
+            border-radius: 50px;
+            box-shadow: 10px  10px 90px #f20044;
+        }
+        .fireworks-background-hidden
+        {
+            top: 300px;
+            display: none;
+            display: none;
+            flex-direction: column;
+            position: relative;
+            align-items: center; /* Align children horizontally center */
+        }
+        .show
+        {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+<div class="visible">
+    <div id="bear">
+        <img id="bearimg" src="Milk And Mocha Bear Couple GIF - Milk And Mocha Bear Couple Line - Discover & Share GIFs.gif" alt="Bear GIF">
+    </div>
+    <div id="button-one">
+        <h1 id="text"> Can you be my <br> Girlfriend??</h1>
+        <button id="press-yes">Yes</button>
+        <button id="press-no">No, I'm sorry</button>
+    </div>
+</div>
+
+
+    <div id="popup" class="popup">
+        <div style="border-radius: 20px;" class="popup-content">
+                <span class="close-button">&times;</span>
+                <h2 style="text-align: center;">For Julian Junie Foster</h2>
+                <p style="text-align: center;">When I hold your hand everything goes away.. <br>same with when I’m laying in ur lap too lol
+                    You have a cheerful vibe and as a nigga I feel safe to be myself around u.. <br> which might make me come off as a friend but… best believe ion speak to friends as often as I speak to u or even the way I do.
+                    Now idk if you’ll read this… you probably will, everyone I loved.. <br>which is a select few has never loved me back before
+                    Or at least anyone I loved first <br>
+                    So this message will more than likely be sent because i either couldn’t wait or jus gave up trying to let u feel something for me
+                    Don’t worry tho it’s okay, I’ll be fine. <br>
+                    My last I love you, have a good day or life depending on where my mind decides to take us… or this could be first time I got an I love you back lol
+                    Leaning towards my last ilu but yeah… have a good one Junie bbygirl</p>
+        </div>
+    </div>
+
+    <div id="fireworks-background" class="fireworks-background-hidden">
+        <div class="heart"></div>
+        <h1 class="love-message">I love you</h1>
+    </div>
+
+        <br>
+    <script>
+// For adding pop up message
+document.getElementById('press-yes').onclick = function() {
+    document.getElementById('popup').style.display = 'block';  
+}
+
+document.querySelector('.close-button').onclick = function() {
+    document.getElementById('popup').style.display = 'none';
+
+    // Hide everything except the fireworks background
+    document.querySelector('.visible').style.display = 'none'; // Hide all visible content
+    
+    // Change the body background and show fireworks
+    document.body.style.backgroundImage = "url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg')";
+    document.getElementById('fireworks-background').classList.add('show'); // Show fireworks
+}
+
+window.onclick = function(event) {
+    const popup = document.getElementById('popup');
+    if (event.target === popup) {
+        popup.style.display = 'none';
+
+        // Hide everything except the fireworks background
+        document.querySelector('.visible').style.display = 'none'; // Hide all visible content
+        
+        // Change the body background and show fireworks
+        document.body.style.backgroundImage = "url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9zci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjIzLXktYmFja2dyb3VuZC1hZGotMDAyYy5qcGc.jpg')";
+        document.getElementById('fireworks-background').classList.add('show'); // Show fireworks
+    }
+}
+
+const movingButton = document.getElementById('press-no');
+
+function moveButton() {
+    // Get the viewport's width and height
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;   
+    const maxX = viewportWidth - movingButton.offsetWidth; // Ensure the button stays on-screen
+    const maxY = viewportHeight - movingButton.offsetHeight; // Ensure the button stays on-screen
+
+    // Generate random x and y coordinates within the viewport
+    const randomX = Math.random() * (maxX); // Adjust for button width
+    const randomY = Math.random() * (maxY); // Adjust for button height
+
+    // Set the button's new position
+    movingButton.style.left = `${randomX}px`;
+    movingButton.style.top = `${randomY}px`;
+}
+
+// Move the button when it's clicked
+movingButton.addEventListener('click', moveButton);
+
+// Initial position for the button
+    </script>
+</body>
+</html>

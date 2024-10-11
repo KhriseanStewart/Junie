@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body {
+    align-content: center;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    background-color: #f0f0f0; /* Set a neutral background color */
+}
+
+#Question {
+    color: palevioletred;
+    font-size: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#button {
+    background-color: red;
+    color: white;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+#date {
+    width: 300px;
+    height: 30px;
+}
+
+.heart {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    transform: rotate(45deg); /* Rotate the heart to make it look proper */
+    opacity: 0.7;
+    animation: moveAround 10s infinite; /* Move and rotate animation */
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    border-radius: 50%; /* Create a circle */
+    
+}
+
+.heart::before {
+    top: -25px; /* Position the top circle */
+    left: 0;
+}
+
+.heart::after {
+    left: 25px; /* Position the right circle */
+    top: 0;
+}
+
+
+@keyframes moveAround {
+    0% {
+        transform: translate(0, 0) rotate(90deg);
+    }
+    10% {
+        transform: translate(50vw - 25px) rotate(45deg);
+    }
+    25% {
+        transform: translate(calc(100vw - 50px), 0) rotate(180deg);
+    }
+    50% {
+        transform: translate(calc(100vw - 50px), calc(100vh - 50px)) rotate(45deg);
+    }
+    75% {
+        transform: translate(0, calc(100vh - 50px)) rotate(90deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+    }
+}
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="heart" style="animation-delay: 0s;"></div>
+    <div class="heart" style="animation-delay: 2s;"></div>
+    <div class="heart" style="animation-delay: 4s;"></div>
+
+    <h2 id="Question">When are you free?</h2>
+    <input type="datetime-local" name="Date" id="date">
+    <br>
+    <br>
+    <br>
+    <button id="button" onclick="location.href='To-Eat.html'">Submit</button> ❤️
+</body>
+</html>
