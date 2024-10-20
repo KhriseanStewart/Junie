@@ -24,9 +24,9 @@
             transform: scale(1.1); /* Slightly enlarge image on hover */
         }
         #section-one {
-            display: flex;
+            display: inline-block;
             justify-content: space-between;
-            width: 1000px;
+            gap: 30px;
             margin: auto; /* Centers the section */
         }
         #nextButton {
@@ -43,6 +43,14 @@
             background-color: palevioletred;
             cursor: pointer; /* Enable cursor */
         }
+        @media (width: 390px){
+            body{
+                width: 390px;
+            }
+            #section-one{
+                width: 390px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -50,13 +58,6 @@
         <h2>What do you want to eat?</h2>
     </div>
 
-    <br id="big-space">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
     <section id="section-one">
         <div id="Pizza" class="food-option">
             <img class="food-img" src="Pizza.jpg" alt="Pizza">
